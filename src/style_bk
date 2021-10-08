@@ -1,0 +1,31 @@
+.vl {
+    border-left: 1px solid black;
+    height: 250px;
+  }
+
+  .thumbnail {
+    width: 25%;
+  }
+
+  img{
+    height: 220px;
+    width: 500px;
+  }
+
+  dt{
+    padding: 4px;
+  }
+
+.locationSelector{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.locationDropDown{
+  width:250px;
+  height:40px;
+  border-radius: 5%;
+  font-size: 20px;
+}
+  

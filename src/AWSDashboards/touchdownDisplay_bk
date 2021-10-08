@@ -1,0 +1,81 @@
+import React from 'react';
+
+const TouchDownDisplay = (props) => {
+    const renderUser = ({userData}) => {
+        if(userData){
+            return userData.map((item,index) => {
+                return(
+                    <tr>
+                        <td>{item.Id}</td>
+                        <td>{item.Country}</td>
+                        <td>{item.State}</td>
+                        <td>{item.City}</td>
+                        <td>{item.Area}</td>
+                        <td>{item.Room}</td>
+                        <td>{item.Start_Time}</td>
+                        <td>{item.End_Time}</td>
+                        <td>{item.Duration}</td>
+                        <td>{item.Deviation}</td>
+                        <td>{item.Appointment_nr}</td>
+                        <td><a>{item.Video_name}</a></td>
+                        <td>{item.ther_id}</td>
+                        <td>{item.ther_name}</td>
+                        <td>{item.Appointment_Status}</td>
+                        <td>{item.Wifi_Staus}</td>
+                    </tr>
+                )
+            })
+        }
+    }
+    return(
+        <div>
+            <center>
+                <h2>SPA DASHBOARD</h2>
+                <br/>
+            </center>
+            <h3>BED OCCUPANCY TABLE</h3>
+                <div className="form-inline">
+                    <label>Country</label> &nbsp;
+                    <input type="text" className="form-control" placeholder="Select Country"></input>&nbsp;
+                    <label>State</label> &nbsp;
+                    <input type="text" className="form-control" placeholder="Select State"></input>&nbsp;
+                    <label>City</label> &nbsp;
+                    <input type="text" className="form-control" placeholder="Select City"></input>&nbsp;
+                    <label>Area</label> &nbsp;
+                    <input type="text" className="form-control" placeholder="Select Area"></input>&nbsp;
+                </div>
+            <br/>
+            <div class="table-responsive">
+                <table className="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Country</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Area</th>
+                            <th>Room</th>
+                            <th>Start_Time</th>
+                            <th>End_Time</th>
+                            <th>Duration</th>
+                            <th>Deviation</th>
+                            <th>Appointment_nr</th>
+                            <th>Video_name</th>
+                            <th>ther_id</th>
+                            <th>ther_name</th>
+                            <th>Appointment_Status</th>
+                            <th>Wifi_Staus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {renderUser(props)}
+                    </tbody>
+                </table>
+            </div>          
+        </div>
+    )
+}
+
+
+
+export default TouchDownDisplay;

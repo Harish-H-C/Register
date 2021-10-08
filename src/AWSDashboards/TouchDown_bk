@@ -1,0 +1,129 @@
+import React, { Component } from 'react';
+import TouchDownDisplay from './TouchDownDisplay';
+
+const url="http://localhost:8901/countries";
+const curl="http://localhost:8901/countries?state=";
+
+class TouchDown extends Component{
+  constructor(){
+    super()
+    this.state={
+      countries:'',
+      state:''
+    }
+  }
+
+  //to display country
+  renderCountry = (data) => {
+    if(data){
+      return data.map((item) => {
+        return(
+          <option value={item.Id}>
+            {item.Country}
+          </option>
+        )
+      })
+    }
+  }
+
+  //to display country wrt state
+  renderState = (data) => {
+    if(data){
+      return data.map((item) => {
+        return(
+          <option value={item.Id}>
+            {item.State}
+          </option>
+        )
+      })
+    }
+  }
+
+
+  handleState = (event) => {
+    const StateId = event.target.value;
+    const url = curl + StateId;
+    console.log(url)
+    fetch(curl + StateId,{method:'GET'})
+    .then((res) => res.json())
+    .then((data) => {this.setState({state:data})})
+  }
+
+
+  render(){
+    return(
+      <div>
+        <div>
+            <center>
+                <h2>SPA DASHBOARD</h2>
+                <br/>
+            </center>
+            <h3>BED OCCUPANCY TABLE</h3>
+            <br/>
+            
+        <div className="locationSelector">
+          <select className="locationDropDown">
+            <option>----SELECT COUNTRY-----</option>
+            {this.renderCountry(this.state.countries)}
+          </select>
+          &nbsp;
+          <select className="locationDropDown" onChange={this.handleState}>
+            <option>----SELECT STATE-----</option>
+            {this.renderState(this.state.countries)}
+          </select>
+          &nbsp;
+          <select className="locationDropDown">
+            <option>----SELECT CITY-----</option>
+          </select>
+          &nbsp;
+          <select className="locationDropDown">
+            <option>----SELECT AREA-----</option>
+          </select>
+        </div>
+            <div class="table-responsive">
+                <table className="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Country</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Area</th>
+                            <th>Room</th>
+                            <th>Start_Time</th>
+                            <th>End_Time</th>
+                            <th>Duration</th>
+                            <th>Deviation</th>
+                            <th>Appointment_nr</th>
+                            <th>Video_name</th>
+                            <th>ther_id</th>
+                            <th>ther_name</th>
+                            <th>Appointment_Status</th>
+                            <th>Wifi_Staus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>          
+        </div>
+        
+        
+      </div>
+    )
+  }
+
+  componentDidMount(){
+    fetch(url,{method:'GET'})
+    .then((response) => response.json())
+    //.then((data) =>{console.log(data)})
+    .then((data) => {this.setState({countries:data})})
+  }
+}
+
+
+export default TouchDown;
+
+
+
